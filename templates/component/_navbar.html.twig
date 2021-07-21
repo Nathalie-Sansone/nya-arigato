@@ -28,7 +28,11 @@
                     <a class="nav-link" href="#"><i class="fas fa-map-marked-alt"></i> Map</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-user-ninja"></i> Connexion</a>
+                    {% if app.user %}
+                    <a class="nav-link" href="{{ path('app_logout') }}"><i class="fas fa-user-ninja"></i> Déconnexion</a>
+                    {% else %}
+                    <a class="nav-link" href="{{ path('app_login') }}"><i class="fas fa-user-ninja"></i> Connexion</a>
+                    {% endif %}
                 </li>
             </ul>
             <form class="d-flex">
