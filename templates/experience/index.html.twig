@@ -3,12 +3,12 @@
 {% block title %}{{ parent() }} - All experiences{% endblock %}
 
 {% block body %}
-    <div class="container mt-4">
-        <h1 class="text-center mb-4">All experiences !</h1>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="container mt-5 justify-content-center align-items-center">
+        <h1 class="text-center mb-5">All experiences !</h1>
+        <div class="row">
         {% for experience in experiences %}
             <div class="col">
-            <div class="card" style="width: 18rem;">
+            <div class="card mt-2" style="width: 18rem;">
                 <img src="{{ experience.image }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title text-muted">{{ experience.title }}</h5>
