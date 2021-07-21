@@ -26,6 +26,11 @@
     {% include 'component/_navbar.html.twig' %}
         </header>
     <body>
+    {% for message in app.flashes('info') %}
+        <div class="alert alert-info">
+            {{ message }}
+        </div>
+    {% endfor %}
         {% block body %}{% endblock %}
     </body>
     <footer>
