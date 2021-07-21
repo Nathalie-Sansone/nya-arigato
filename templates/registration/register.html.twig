@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Création de compte{% endblock %}
+
+{% block body %}
+    <h1>S'inscrire</h1>
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        <button type="submit" class="btn btn-outline-danger">Créer mon compte</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}
