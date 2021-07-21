@@ -13,6 +13,11 @@ html, body {
     font-family: 'Permanent Marker', cursive;
 }
 
+body {
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(247,247,255,1) 35%, rgba(205,223,252,1) 100%);
+}
+
 .form-background {
     background-image: url("/assets/images/shiba.jpg");
     background-size: auto;
