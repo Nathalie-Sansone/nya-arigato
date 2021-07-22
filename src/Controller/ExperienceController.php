@@ -7,6 +7,7 @@ use App\Form\CommentType;
 use App\Repository\CommentRepository;
 use App\Repository\ExperienceRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,9 +18,19 @@ class ExperienceController extends AbstractController
     /**
      * @Route("/experience", name="experience_index")
      */
-    public function index(ExperienceRepository $experienceRepository): Response
+    public function index(ExperienceRepository $experienceRepository,
+                          PaginatorInterface $paginator,
+                          Request $request): Response
     {
-        $experiences = $experienceRepository->findAll();
+        $experiencesData = $experienceRepository->findBy(
+            [],
+            ['id' => 'DESC']
+        );
+        $experiences = $paginator->paginate(
+            $experiencesData,
+            $request->query->getInt('page', 1),
+            8
+        );
 
         return $this->render('experience/index.html.twig', [
             'experiences' => $experiences,
