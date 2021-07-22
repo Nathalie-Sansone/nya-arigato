@@ -8,5 +8,13 @@
    <div class="container mt-5">
    <h1 class="text-center">Nya ! Arigato</h1>
       <div id="map" class="mb-2"></div>
+       <h2 class="mt-4">Vous aimerez sans doute...</h2>
+       <div class="row">
+           <div class="col">
+               {% for experience in experiences|shuffle|slice(0,3) %}
+                   <a href="{{ path('experience_show', {id: experience.id}) }}"><img src="{{ experience.image }}" alt="{{ experience.title }}" width="250px" class="img-thumbnail mt-3"></a>
+               {% endfor %}
+           </div>
+       </div>
    </div>
 {% endblock %}

@@ -9,6 +9,10 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/brands';
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Permanent Marker', cursive;
     background: rgb(255,255,255);
