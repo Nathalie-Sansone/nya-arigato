@@ -24,6 +24,9 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><i class="fas fa-map-marker-alt text-danger"></i> {{ experience.city }}</li>
                         <li class="list-group-item">{% include 'component/_experience_category_icons.html.twig' %} {{ experience.category.name }}</li>
+                        {% if is_granted("ROLE_ADMIN") %}
+                            {% include 'experience/_delete_form.html.twig' %}
+                        {% endif %}
                     </ul>
                     <a href="{{ path('experience_show', {id: experience.id}) }}" class="btn btn-outline-danger">En savoir plus</a>
                 </div>

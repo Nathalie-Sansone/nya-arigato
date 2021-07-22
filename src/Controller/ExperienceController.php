@@ -117,4 +117,20 @@ class ExperienceController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("experience/delete/{experience_id}", name="experience_delete", methods={"GET", "POST"})
+     * @ParamConverter("experience", class="App\Entity\Experience", options={"mapping": {"experience_id": "id"}})
+     */
+    public function delete(Experience $experience,
+                           EntityManagerInterface $entityManager,
+                           Request $request): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$experience->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($experience);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('experience_index');
+    }
 }

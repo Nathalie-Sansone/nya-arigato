@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('experience_delete', {'experience_id': experience.id}) }}" onsubmit="return confirm('Supprimer cette expérience ?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ experience.id) }}">
+    <i class="far fa-trash-alt text-muted"></i><button class="btn text-muted"> Supprimer</button>
+</form>
