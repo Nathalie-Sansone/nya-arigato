@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Comment;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -79,7 +80,8 @@ class CommentController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="comment_delete", methods={"POST"})
+     * @Route("/{id}", name="comment_delete", methods={"GET", "POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Comment $comment): Response
     {
@@ -89,6 +91,6 @@ class CommentController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('comment_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('experience_show', ['id' => $comment->getExperience()->getId()]);
     }
 }
