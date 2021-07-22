@@ -9,11 +9,8 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/brands';
 
-html, body {
-    font-family: 'Permanent Marker', cursive;
-}
-
 body {
+    font-family: 'Permanent Marker', cursive;
     background: rgb(255,255,255);
     background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(247,247,255,1) 35%, rgba(205,223,252,1) 100%);
 }

@@ -4,10 +4,16 @@
 {% endblock %}
 {% block body %}
         <div class="container mt-5 justify-content-center align-items-center">
-            <h1 class="text-center mb-5"><i class="fas fa-compass"></i> {{ category.name }}</h1>
+            <h1 class="text-center mb-5"> {% if category.name == 'Attractions' %}<i class="fab fa-angellist"></i>{% endif %}
+                {% if category.name == 'Musées' %}<i class="fas fa-landmark"></i>{% endif %}
+                {% if category.name == 'Observatoires' %}<i class="fas fa-broadcast-tower text-warning"></i>{% endif %}
+                {% if category.name == 'Temples et sanctuaires' %}<i class="fas fa-torii-gate text-danger"></i>{% endif %}
+                {% if category.name == 'Randonnées et excursions' %}<i class="fas fa-hiking text-info"></i>{% endif %}
+                {% if category.name == 'Jardins et parcs' %}<i class="fas fa-leaf text-success"></i>{% endif %}
+                {{ category.name }}</h1>
             <div class="row">
                 {% for experience in experiences %}
-                    <div class="col">
+                    <div class="col d-flex justify-content-center">
                         <div class="card mt-2" style="width: 18rem;">
                             <img src="{{ experience.image }}" class="card-img-top" alt="...">
                             <div class="card-body">
