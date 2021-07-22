@@ -6,9 +6,11 @@ use App\Repository\AvatarRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass=AvatarRepository::class)
+ * @Vich\Uploadable
  */
 class Avatar
 {
@@ -46,13 +48,13 @@ class Avatar
     {
         $this->imageFile = $image;
         if ($image) {
-            $this->updatedAt = new \DateTime('now');
+            $this->updatedAt = new \DateTimeImmutable('now');
         }
     }
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
-     * @var \DateTime
+     * @var \DateTimeImmutable
      */
     private $updatedAt;
 

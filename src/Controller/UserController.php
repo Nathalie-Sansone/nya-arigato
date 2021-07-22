@@ -25,6 +25,8 @@ class UserController extends AbstractController
             $avatar->setUser($this->getUser());
             $entityManager->persist($avatar);
             $entityManager->flush();
+
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('user/profile.html.twig', [
