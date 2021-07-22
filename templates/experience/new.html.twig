@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block title %}
+    {{ parent() }} - Ajouter une expérience
+{% endblock %}
+{% block body %}
+    <div class="container mt-5">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-sm-6">
+                <h1 class="mb-5 text-center"><i class="fas fa-plus-circle"></i> Ajouter une expérience</h1>
+                    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+                    {{ form_start(form) }}
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.image) }}
+                    <a href="https://fr.wikihow.com/obtenir-l%27URL-des-images" target="_blank" class="text-danger mb-2" style="text-decoration: none"><i class="fas fa-info-circle"></i> Besoin d'aide ?</a>
+                    {{ form_row(form.content) }}
+                    {{ form_row(form.city) }}
+                    {{ form_row(form.category) }}
+                        <input type='submit' value='Soumettre' class="btn btn-outline-dark mt-4">
+                    {{ form_end(form) }}
+                <a href="{{ path('experience_index') }}" class="btn btn-outline-danger mt-4"><i class="far fa-arrow-alt-circle-left"></i> Retour</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -5,7 +5,9 @@
 {% block body %}
     <div class="container mt-5 justify-content-center align-items-center">
         <h1 class="text-center mb-5"><i class="fas fa-passport"></i> All experiences !</h1>
-        <a href="" class="btn btn-outline-danger mb-3"><i class="far fa-arrow-alt-circle-right"></i> Proposer une expérience</a>
+        {% if app.user %}
+        <a href="{{ path('new_experience') }}" class="btn btn-outline-danger mb-3"><i class="far fa-arrow-alt-circle-right"></i> Proposer une expérience</a>
+        {% endif %}
         <div class="row">
         {% for experience in experiences %}
             <div class="col">

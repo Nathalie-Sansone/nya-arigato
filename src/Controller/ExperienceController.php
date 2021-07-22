@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Comment;
+use App\Entity\Experience;
 use App\Form\CommentType;
+use App\Form\ExperienceType;
 use App\Repository\CommentRepository;
 use App\Repository\ExperienceRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -38,7 +40,30 @@ class ExperienceController extends AbstractController
     }
 
     /**
-     * @Route("/experience/{id}", name="experience_show")
+     * @Route("/experience/new", name="new_experience", methods={"GET", "POST"})
+     */
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $experience = new Experience();
+        $form = $this->createForm(ExperienceType::class, $experience);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $experience->setCreatedAt(new \DateTimeImmutable());
+            $experience->setUpdatedAt(new \DateTimeImmutable());
+            $entityManager->persist($experience);
+            $entityManager->flush();
+
+            $this->addFlash('info', 'Votre expérience a bien été ajoutée !');
+
+            return $this->redirectToRoute('experience_index');
+        }
+            return $this->render('experience/new.html.twig', [
+                'form' => $form->createView()
+            ]);
+    }
+
+    /**
+     * @Route("/experience/{id}", name="experience_show", methods={"GET", "POST"})
      */
     public function show(Int $id,
                          ExperienceRepository $experienceRepository,
