@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ parent() }} - {{ category.name }}
+{% endblock %}
+{% block body %}
+        <div class="container mt-5 justify-content-center align-items-center">
+            <h1 class="text-center mb-5"><i class="fas fa-compass"></i> {{ category.name }}</h1>
+            <div class="row">
+                {% for experience in experiences %}
+                    <div class="col">
+                        <div class="card mt-2" style="width: 18rem;">
+                            <img src="{{ experience.image }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title text-muted">{{ experience.title }}</h5>
+                                <p class="card-text">{{ experience.content|u.truncate(100, '...') }}</p>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><i class="fas fa-map-marker-alt text-danger"></i> {{ experience.city }}</li>
+                                </ul>
+                                <a href="{{ path('experience_show', {id: experience.id}) }}" class="btn btn-outline-danger">En savoir plus</a>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    Aucune expérience trouvée
+                {% endfor %}
+            </div>
+        </div>
+    {% endblock %}
