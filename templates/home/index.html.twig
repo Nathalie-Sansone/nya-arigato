@@ -1,4 +1,8 @@
 {% extends 'base.html.twig' %}
+{% block javascripts %}
+{{ parent() }}
+ {{ encore_entry_script_tags('map') }}
+{% endblock %}
 {% block title %}{{ parent() }} - Share your best experiences !{% endblock %}
 {% block body %}
    <div class="container mt-5">

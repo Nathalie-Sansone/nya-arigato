@@ -14,8 +14,8 @@
                     <h5 class="card-title text-muted">{{ experience.title }}</h5>
                     <p class="card-text">{{ experience.content|u.truncate(100, '...') }}</p>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Ville/quartier : {{ experience.city }}</li>
-                        <li class="list-group-item">Catégorie : {{ experience.category.name }}</li>
+                        <li class="list-group-item"><i class="fas fa-map-marker-alt text-danger"></i> {{ experience.city }}</li>
+                        <li class="list-group-item"><i class="far fa-compass text-danger"></i> {{ experience.category.name }}</li>
                     </ul>
                     <a href="{{ path('experience_show', {id: experience.id}) }}" class="btn btn-outline-danger">En savoir plus</a>
                 </div>
