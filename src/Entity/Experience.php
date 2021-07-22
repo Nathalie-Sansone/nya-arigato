@@ -6,6 +6,7 @@ use App\Repository\ExperienceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ExperienceRepository::class)
@@ -21,16 +22,20 @@ class Experience
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Merci de bien vouloir saisir un titre")
+     * @Assert\Length(max="255", maxMessage="Le titre ne doit pas dépasser {{ limit }} caractères")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Merci de bien vouloir saisir un résumé")
      */
     private $content;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Url(message="Merci de bien vouloir saisir une Url valide")
      */
     private $image;
 
@@ -52,6 +57,8 @@ class Experience
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Merci de bien vouloir saisir une ville/un quartier")
+     * @Assert\Length(max="255", maxMessage="Ce contenu ne doit pas dépasser {{ limit }} caractères")
      */
     private $city;
 
