@@ -5,6 +5,11 @@
 {% block body %}
     <div class="container mt-5 justify-content-center align-items-center">
         <h1 class="text-center mb-5"><i class="fas fa-passport"></i> All experiences !</h1>
+        <div class="mb-2">
+        {{ form_start(form) }}
+        {{ form_row(form.search) }}
+        {{ form_end(form) }}
+        </div>
         {% if app.user %}
         <a href="{{ path('new_experience') }}" class="btn btn-outline-danger mb-3"><i class="far fa-arrow-alt-circle-right"></i> Proposer une expérience</a>
         {% endif %}

@@ -6,6 +6,7 @@ use App\Entity\Comment;
 use App\Entity\Experience;
 use App\Form\CommentType;
 use App\Form\ExperienceType;
+use App\Form\SearchExperienceType;
 use App\Repository\CommentRepository;
 use App\Repository\ExperienceRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -36,8 +37,21 @@ class ExperienceController extends AbstractController
             8
         );
 
+        $form = $this->createForm(SearchExperienceType::class);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $search = $form->getData()['search'];
+            $experiencesData = $experienceRepository->findByCityorTitle($search);
+            $experiences = $paginator->paginate(
+                $experiencesData,
+                $request->query->getInt('page', 1),
+                8
+            );
+        }
+
         return $this->render('experience/index.html.twig', [
             'experiences' => $experiences,
+            'form' => $form->createView()
         ]);
     }
 

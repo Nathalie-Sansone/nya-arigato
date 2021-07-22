@@ -19,32 +19,15 @@ class ExperienceRepository extends ServiceEntityRepository
         parent::__construct($registry, Experience::class);
     }
 
-    // /**
-    //  * @return Experience[] Returns an array of Experience objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findByCityorTitle(string $name)
     {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
+        $queryBuilder = $this->createQueryBuilder('e')
+            ->orWhere('e.title LIKE :name')
+            ->orWhere('e.city LIKE :name')
+            ->setParameter('name', '%' . $name . '%')
             ->orderBy('e.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+            ->getQuery();
 
-    /*
-    public function findOneBySomeField($value): ?Experience
-    {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return $queryBuilder->getResult();
     }
-    */
 }
